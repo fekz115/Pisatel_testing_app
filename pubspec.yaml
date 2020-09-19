@@ -11,10 +11,24 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^6.0.5
+  built_value: ^7.1.0
+  built_collection: ^4.3.2
+  chopper: ^3.0.3
+  sealed_class: 3.0.0
+  auto_route: ^0.6.7
+  shimmer: ^1.1.1
+  rxdart: ^0.24.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  auto_route_generator: ^0.6.7
+  build_runner:
+  built_value_generator: ^7.1.0
+  chopper_generator: ^3.0.3
+  chopper_built_value: ^0.0.3
+  sealed_class_generator: 3.0.0
 
 flutter:
   uses-material-design: true
