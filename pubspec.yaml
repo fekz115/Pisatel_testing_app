@@ -19,6 +19,7 @@ dependencies:
   auto_route: ^0.6.7
   shimmer: ^1.1.1
   rxdart: ^0.24.1
+  hive: ^1.4.4
 
 dev_dependencies:
   flutter_test:
@@ -29,6 +30,7 @@ dev_dependencies:
   chopper_generator: ^3.0.3
   chopper_built_value: ^0.0.3
   sealed_class_generator: 3.0.0
+  hive_generator: ^0.7.1
 
 flutter:
   uses-material-design: true
