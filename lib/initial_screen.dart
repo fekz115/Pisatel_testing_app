@@ -1,11 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pisatel_testing_app/bloc/comments/comment_bloc_event.dart';
+import 'package:pisatel_testing_app/bloc/comments/comments_bloc.dart';
 import 'package:pisatel_testing_app/widget/photo.dart';
 
-import 'bloc/photo_bloc.dart';
-import 'bloc/photo_bloc_event.dart';
-import 'bloc/photo_bloc_state.dart';
+import 'bloc/photo/photo_bloc.dart';
+import 'bloc/photo/photo_bloc_event.dart';
+import 'bloc/photo/photo_bloc_state.dart';
 import 'domain/photo.dart';
 import 'navigation.gr.dart';
 
@@ -19,6 +21,7 @@ class InitialScreen extends StatelessWidget {
       body: BlocConsumer<PhotoBloc, PhotoBlocState>(
         listener: (context, state) {
           if (state is LoadingPhotoCommentsBlocState) {
+            BlocProvider.of<CommentsBloc>(context).add(LoadPhotoCommentsEvent(state.photo));
             ExtendedNavigator.root.push(Routes.photoScreen);
           }
         },

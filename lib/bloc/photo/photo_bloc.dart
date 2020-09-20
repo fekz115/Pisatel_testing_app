@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pisatel_testing_app/bloc/photo_bloc_event.dart';
-import 'package:pisatel_testing_app/bloc/photo_bloc_state.dart';
+import 'package:pisatel_testing_app/bloc/photo/photo_bloc_event.dart';
+import 'package:pisatel_testing_app/bloc/photo/photo_bloc_state.dart';
 import 'package:pisatel_testing_app/domain/photo.dart';
 import 'package:pisatel_testing_app/repository/photo_repository.dart';
 
@@ -43,7 +43,5 @@ class PhotoBloc extends Bloc<PhotoBlocEvent, PhotoBlocState> {
   Stream<PhotoBlocState> _onOpenPhotoComments(
       OpenPhotoCommentsEvent event) async* {
     yield (LoadingPhotoCommentsBlocState(event.photo));
-    var comments = await _repository.getComments(event.photo.id).first;
-    yield (LoadedPhotoCommentsBlocState(event.photo, comments));
   }
 }
