@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pisatel_testing_app/bloc/comments/comment_bloc_event.dart';
 import 'package:pisatel_testing_app/bloc/comments/comments_bloc.dart';
 import 'package:pisatel_testing_app/widget/photo.dart';
+import 'package:shimmer/shimmer.dart';
 
 import 'bloc/photo/photo_bloc.dart';
 import 'bloc/photo/photo_bloc_event.dart';
@@ -21,7 +22,8 @@ class InitialScreen extends StatelessWidget {
       body: BlocConsumer<PhotoBloc, PhotoBlocState>(
         listener: (context, state) {
           if (state is LoadingPhotoCommentsBlocState) {
-            BlocProvider.of<CommentsBloc>(context).add(LoadPhotoCommentsEvent(state.photo));
+            BlocProvider.of<CommentsBloc>(context)
+                .add(LoadPhotoCommentsEvent(state.photo));
             ExtendedNavigator.root.push(Routes.photoScreen);
           }
         },
@@ -47,8 +49,8 @@ class InitialScreen extends StatelessWidget {
   }
 
   Widget _buildLoadingScreen() {
-    return Center(
-      child: CircularProgressIndicator(),
+    return ListView(
+      children: List.generate(10, (index) => _buildLoadingPhoto()),
     );
   }
 
@@ -71,6 +73,28 @@ class InitialScreen extends StatelessWidget {
   Widget _buildErrorScreen() {
     return Center(
       child: Text('Something went wrong'),
+    );
+  }
+
+  Widget _buildLoadingPhoto() {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300],
+      highlightColor: Colors.grey[100],
+      child: ListTile(
+        leading: ClipOval(
+          child: CircleAvatar(
+            child: Container(
+              width: 100,
+              height: 100,
+            ),
+          ),
+        ),
+        title: Container(
+          width: double.infinity,
+          height: 20,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

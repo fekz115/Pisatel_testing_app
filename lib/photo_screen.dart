@@ -5,6 +5,7 @@ import 'package:pisatel_testing_app/bloc/comments/comments_bloc.dart';
 import 'package:pisatel_testing_app/domain/comment.dart';
 import 'package:pisatel_testing_app/domain/photo.dart';
 import 'package:pisatel_testing_app/widget/comment.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PhotoScreen extends StatelessWidget {
   @override
@@ -47,18 +48,23 @@ class PhotoScreen extends StatelessWidget {
         Positioned(
           bottom: 8.0,
           right: 8.0,
-          child: Text(photo.title, style: TextStyle(
-            fontSize: 18.0,
-            color: Colors.white70,
-          ),),
+          child: Text(
+            photo.title,
+            style: TextStyle(
+              fontSize: 18.0,
+              color: Colors.white70,
+            ),
+          ),
         ),
       ],
     );
   }
 
   Widget _buildLoadingScreen() {
-    return Center(
-      child: CircularProgressIndicator(),
+    return ListView(
+      shrinkWrap: true,
+      physics: ScrollPhysics(),
+      children: List.generate(10, (index) => _buildLoadingComment()),
     );
   }
 
@@ -75,6 +81,44 @@ class PhotoScreen extends StatelessWidget {
       children: [
         ...comments.map((e) => CommentWidget(comment: e)).toList(),
       ],
+    );
+  }
+
+  Widget _buildLoadingComment() {
+    return Card(
+      child: Shimmer.fromColors(
+        baseColor: Colors.grey[300],
+        highlightColor: Colors.grey[100],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                width: double.infinity,
+                height: 18,
+                color: Colors.white,
+              ),
+              SizedBox(
+                height: 3.0,
+              ),
+              Container(
+                width: double.infinity,
+                height: 15,
+                color: Colors.white,
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                width: double.infinity,
+                height: 12,
+                color: Colors.white,
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

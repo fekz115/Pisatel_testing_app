@@ -27,7 +27,8 @@ class MyApp extends StatelessWidget {
     );
     final persistanceRepository = Future<PersistanceRepository>(() async {
       await Hive.initFlutter();
-      Hive.registerAdapter(CommentDtoAdapter());
+      if (!Hive.isAdapterRegistered(1))
+        Hive.registerAdapter(CommentDtoAdapter());
       final commentsBox = await Hive.openBox('comments');
       return HivePersistanceRepository(commentsBox);
     });
