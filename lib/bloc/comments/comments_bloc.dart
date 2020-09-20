@@ -35,7 +35,11 @@ class CommentsBloc extends Bloc<PhotoCommentsEvent, PhotoCommentsState> {
       LoadPhotoCommentsEvent event) async* {
     photo = event.photo;
     yield (LoadingPhotoCommentsState(photo));
-    var comments = await _repository.getComments(photo.id).first;
+    var comments = await _persistanceRepository.getComments(photo.id);
+    if(comments == null) {
+      comments = await _repository.getComments(photo.id).first;
+      await _persistanceRepository.saveComments(photo, comments);
+    }
     yield (LoadedPhotoCommentsState(photo, comments));
   }
 }

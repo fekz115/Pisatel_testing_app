@@ -7,6 +7,7 @@ import 'package:pisatel_testing_app/bloc/comments/comment_bloc_state.dart';
 import 'package:pisatel_testing_app/bloc/comments/comments_bloc.dart';
 import 'package:pisatel_testing_app/bloc/photo/photo_bloc.dart';
 import 'package:pisatel_testing_app/bloc/photo/photo_bloc_state.dart';
+import 'package:pisatel_testing_app/persistance/hive/comment_dto.dart';
 import 'package:pisatel_testing_app/persistance/hive/hive_persistance_repository.dart';
 import 'package:pisatel_testing_app/persistance/persistance_repository.dart';
 import 'package:pisatel_testing_app/repository/photo_api_service.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
     );
     final persistanceRepository = Future<PersistanceRepository>(() async {
       await Hive.initFlutter();
+      Hive.registerAdapter(CommentDtoAdapter());
       final commentsBox = await Hive.openBox('comments');
       return HivePersistanceRepository(commentsBox);
     });

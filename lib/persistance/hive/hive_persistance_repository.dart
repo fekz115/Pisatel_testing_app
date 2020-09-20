@@ -13,7 +13,8 @@ class HivePersistanceRepository implements PersistanceRepository {
   Future<Iterable<Comment>> getComments(int id) async {
     final cached = await _box.get(id);
     if (cached != null) {
-      return (cached as Iterable<CommentDto>)
+      return (cached as Iterable<dynamic>)
+          .cast<CommentDto>()
           .map((e) => e.entity)
           .toList();
     } else

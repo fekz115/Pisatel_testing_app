@@ -19,13 +19,12 @@ class CommentDto {
 
   CommentDto({this.postId, this.id, this.name, this.email, this.body});
 
-  Comment get entity => Comment((b) => {
-        b
-          ..id = id
-          ..name = name
-          ..email = email
-          ..body = body
-      });
+  Comment get entity => Comment((b) => b
+    ..id = id
+    ..name = name
+    ..email = email
+    ..body = body
+    ..postId = postId);
 
   factory CommentDto.fromEntity(Comment entity) {
     return CommentDto(
