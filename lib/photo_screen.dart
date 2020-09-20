@@ -44,7 +44,14 @@ class PhotoScreen extends StatelessWidget {
     return Stack(
       children: [
         Image.network(photo.url),
-        Text(photo.title),
+        Positioned(
+          bottom: 8.0,
+          right: 8.0,
+          child: Text(photo.title, style: TextStyle(
+            fontSize: 18.0,
+            color: Colors.white70,
+          ),),
+        ),
       ],
     );
   }
