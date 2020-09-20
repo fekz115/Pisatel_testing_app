@@ -1,4 +1,3 @@
-import 'package:built_collection/built_collection.dart';
 import 'package:pisatel_testing_app/domain/comment.dart';
 import 'package:pisatel_testing_app/domain/photo.dart';
 
@@ -13,7 +12,7 @@ class LoadingPhotoCommentsState extends PhotoCommentsState {
 
 class LoadedPhotoCommentsState extends PhotoCommentsState {
   final Photo photo;
-  final BuiltList<Comment> comments;
+  final Iterable<Comment> comments;
 
   LoadedPhotoCommentsState(this.photo, this.comments);
 }

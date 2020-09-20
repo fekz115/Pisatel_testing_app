@@ -2,15 +2,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pisatel_testing_app/bloc/comments/comment_bloc_event.dart';
 import 'package:pisatel_testing_app/bloc/comments/comment_bloc_state.dart';
 import 'package:pisatel_testing_app/domain/photo.dart';
+import 'package:pisatel_testing_app/persistance/persistance_repository.dart';
 import 'package:pisatel_testing_app/repository/photo_repository.dart';
 
 typedef Stream<S> Dispatcher<E, S>(E event);
 
 class CommentsBloc extends Bloc<PhotoCommentsEvent, PhotoCommentsState> {
   final PhotoRepository _repository;
+  final PersistanceRepository _persistanceRepository;
   Photo photo;
 
-  CommentsBloc(PhotoCommentsState initialState, this._repository)
+  CommentsBloc(PhotoCommentsState initialState, this._repository, this._persistanceRepository)
       : super(initialState) {
     _dispatchersMap = {
       LoadPhotoCommentsEvent: (event) =>
