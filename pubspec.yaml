@@ -15,7 +15,6 @@ dependencies:
   built_value: ^7.1.0
   built_collection: ^4.3.2
   chopper: ^3.0.3
-  sealed_class: 3.0.0
   auto_route: ^0.6.7
   shimmer: ^1.1.1
   rxdart: ^0.24.1
@@ -30,7 +29,6 @@ dev_dependencies:
   built_value_generator: ^7.1.0
   chopper_generator: ^3.0.3
   chopper_built_value: ^0.0.3
-  sealed_class_generator: 3.0.0
   hive_generator: ^0.7.1
 
 flutter:

@@ -529,20 +529,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.24.1"
-  sealed_class:
-    dependency: "direct main"
-    description:
-      name: sealed_class
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
-  sealed_class_generator:
-    dependency: "direct dev"
-    description:
-      name: sealed_class_generator
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.0"
   shelf:
     dependency: transitive
     description:
